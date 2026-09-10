@@ -76,3 +76,64 @@ footer p { margin: .75rem 0 0; color: var(--navy); font-weight: 800; letter-spac
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero__flag {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__flag img {
+  position: absolute;
+  top: 0;
+  right: -3%;
+  width: 76%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.36;
+  animation: flag-wave 8s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 26, 56, 0.98) 0%,
+    rgba(0, 40, 85, 0.82) 52%,
+    rgba(0, 40, 85, 0.25) 100%
+  );
+  pointer-events: none;
+}
+
+.hero__content,
+.hero__mark {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes flag-wave {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.08) translate3d(-1.25%, 0.5%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__flag img {
+    animation: none;
+  }
+}
